@@ -28,5 +28,9 @@ EXPOSE 15353
 WORKDIR /app
 # Use an arbitrary user ID for OpenShift compatibility
 USER 1001
+
+ENV PYTHONUSERBASE=/app/.local
+ENV PATH="/app/.local/bin:$PATH"
+
 ENTRYPOINT [ "/app/.local/bin/dns_exporter" ]
 CMD [ "-L", "0.0.0.0", "-c", "/app/dns_exporter.yml" ]
